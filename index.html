@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aura Energia | Energia Solar por Assinatura</title>
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #115e59;
+      --accent: #f59e0b;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --text: #0f172a;
+      --text-muted: #475569;
+      --border: #e2e8f0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); line-height: 1.6; }
+
+    /* Navegação */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    nav a {
+      margin-left: 1.5rem;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    nav a:hover { color: var(--primary); }
+
+    /* Hero Section */
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 1.5rem;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      background: #ccfbf1;
+      color: var(--primary-dark);
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      max-width: 750px;
+      margin: 0 auto 1.25rem;
+    }
+    .hero p {
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2rem;
+      font-size: 1.1rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 1.75rem;
+      border-radius: 8px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-size: 1rem;
+      transition: background 0.2s;
+    }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+      margin-left: 0.75rem;
+    }
+
+    /* Métricas */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      max-width: 1100px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+    }
+    .stat-card {
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .stat-card strong { display: block; font-size: 1.8rem; color: var(--primary); }
+    .stat-card span { color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Seções Gerais */
+    section { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
+    .section-title { text-align: center; margin-bottom: 3rem; }
+    .section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+    .section-title p { color: var(--text-muted); }
+
+    /* Planos */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    }
+    .card.featured { border: 2px solid var(--primary); position: relative; }
+    .tag {
+      position: absolute;
+      top: -12px;
+      right: 20px;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+    }
+    .price { font-size: 2rem; font-weight: 800; margin: 1rem 0; color: var(--text); }
+    .price small { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
+    .card ul { list-style: none; margin: 1rem 0 2rem; flex-grow: 1; }
+    .card li { margin-bottom: 0.6rem; color: var(--text-muted); font-size: 0.95rem; }
+    .card li::before { content: "✓ "; color: var(--primary); font-weight: bold; }
+
+    /* FAQ (Apenas HTML + CSS usando <details>) */
+    .faq-list { max-width: 750px; margin: 0 auto; }
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.75rem;
+      padding: 1rem 1.25rem;
+    }
+    summary { font-weight: 600; cursor: pointer; list-style: none; }
+    details p { margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; }
+
+    /* Rodapé */
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Widget de Chat Flutuante */
+    .chat-launcher {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--primary);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+      cursor: pointer;
+      font-size: 1.5rem;
+      z-index: 1000;
+    }
+    .chat-window {
+      position: fixed;
+      bottom: 96px;
+      right: 24px;
+      width: 350px;
+      max-width: calc(100vw - 48px);
+      height: 460px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 1000;
+    }
+    .chat-window.open { display: flex; }
+    .chat-header {
+      background: var(--primary);
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chat-header small { display: block; font-size: 0.75rem; opacity: 0.85; }
+    .chat-close { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; }
+    .chat-messages {
+      flex: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: #f1f5f9;
+    }
+    .msg {
+      max-width: 82%;
+      padding: 0.65rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      word-wrap: break-word;
+    }
+    .msg.bot { background: white; align-self: flex-start; border: 1px solid var(--border); }
+    .msg.user { background: var(--primary); color: white; align-self: flex-end; }
+    .quick-replies {
+      display: flex;
+      gap: 0.4rem;
+      padding: 0.5rem 0.75rem;
+      overflow-x: auto;
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .quick-replies button {
+      white-space: nowrap;
+      font-size: 0.75rem;
+      padding: 0.35rem 0.65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+    }
+    .chat-form {
+      display: flex;
+      border-top: 1px solid var(--border);
+      padding: 0.5rem;
+      background: var(--surface);
+    }
+    .chat-form input {
+      flex: 1;
+      border: none;
+      padding: 0.5rem;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .chat-form button {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-container">
+      <a href="#" class="logo">Aura<span>Energia</span></a>
+      <nav>
+        <a href="#planos">Planos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#faq">Dúvidas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="badge">100% Renovável · Sem obras no telhado</span>
+      <h1>Reduza sua conta de luz em até 20% todos os meses.</h1>
+      <p>Assine créditos de energia solar gerados em nossas fazendas solares e receba o desconto direto na sua fatura atual, com suporte inteligente 24h.</p>
+      <a href="#planos" class="btn btn-primary">Ver planos</a>
+      <button class="btn btn-outline" onclick="toggleChat()">Tirar dúvida no chat</button>
+    </section>
+
+    <div class="stats">
+      <div class="stat-card"><strong>Até 20%</strong><span>Economia garantida</span></div>
+      <div class="stat-card"><strong>R$ 0,00</strong><span>Custo de instalação</span></div>
+      <div class="stat-card"><strong>24/7</strong><span>Atendimento com IA</span></div>
+      <div class="stat-card"><strong>45 mil</strong><span>Lares conectados</span></div>
+    </div>
+
+    <section id="planos">
+      <div class="section-title">
+        <h2>Escolha seu plano</h2>
+        <p>Sem fidelidade, sem taxa de adesão e 100% digital.</p>
+      </div>
+      <div class="grid-3">
+        <div class="card">
+          <h3>Aura Essencial</h3>
+          <div class="price">12% OFF <small>na fatura</small></div>
+          <ul>
+            <li>Contas a partir de R$ 150/mês</li>
+            <li>Sem fidelidade contratual</li>
+            <li>Ativação em até 30 dias</li>
+          </ul>
+          <button class="btn btn-primary" onclick="selectPlan('Aura Essencial')">Quero esse</button>
+        </div>
+
+        <div class="card featured">
+          <span class="tag">Mais escolhido</span>
+          <h3>Aura Plus</h3>
+          <div class="price">16% OFF <small>na fatura</small></div>
+          <ul>
+            <li>Contas acima de R$ 350/mês</li>
+            <li>Relatório mensal de carbono evitado</li>
+            <li>Suporte prioritário</li>
+          </ul>
