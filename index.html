@@ -3,30 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aura Energia: energia solar por assinatura, sem obras no telhado. Conheça nossos planos.">
   <title>Aura Energia | Energia Solar por Assinatura</title>
+
   <style>
     :root {
       --primary: #0f766e;
       --primary-dark: #115e59;
       --accent: #f59e0b;
       --bg: #f8fafc;
-      --surface: #ffffff;
+      --surface: #fff;
       --text: #0f172a;
-      --text-muted: #475569;
+      --muted: #475569;
       --border: #e2e8f0;
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    body {
       margin: 0;
-      padding: 0;
+      background: var(--bg);
+      color: var(--text);
       font-family: system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
     }
 
-    html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); line-height: 1.6; }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 110px;
+    }
 
-    /* Navegação */
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    a { color: var(--primary); }
+
+    :focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
@@ -34,168 +49,212 @@
       top: 0;
       z-index: 100;
     }
+
     .nav-container {
       max-width: 1100px;
-      margin: 0 auto;
+      margin: auto;
       padding: 1rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
     }
-    .logo { font-size: 1.4rem; font-weight: 800; color: var(--primary); text-decoration: none; }
-    .logo span { color: var(--accent); }
-    nav a {
-      margin-left: 1.5rem;
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.95rem;
-    }
-    nav a:hover { color: var(--primary); }
 
-    /* Hero Section */
-    .hero {
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo span { color: #a65e00; }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    section {
       max-width: 1100px;
-      margin: 0 auto;
-      padding: 5rem 1.5rem;
+      margin: auto;
+      padding: 4rem 1.5rem;
+    }
+
+    .hero {
+      padding-block: 5rem;
       text-align: center;
     }
+
     .badge {
       display: inline-block;
       background: #ccfbf1;
       color: var(--primary-dark);
-      padding: 0.35rem 0.9rem;
+      padding: .35rem .9rem;
       border-radius: 999px;
-      font-size: 0.85rem;
+      font-size: .85rem;
       font-weight: 600;
-      margin-bottom: 1rem;
     }
+
     .hero h1 {
       font-size: clamp(2rem, 5vw, 3.2rem);
       line-height: 1.15;
       max-width: 750px;
-      margin: 0 auto 1.25rem;
+      margin: 1rem auto;
     }
+
     .hero p {
-      color: var(--text-muted);
       max-width: 600px;
       margin: 0 auto 2rem;
+      color: var(--muted);
       font-size: 1.1rem;
     }
+
+    .actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .75rem;
+    }
+
     .btn {
       display: inline-block;
-      padding: 0.85rem 1.75rem;
+      padding: .85rem 1.5rem;
       border-radius: 8px;
+      border: 1px solid transparent;
+      background: var(--primary);
+      color: white;
       font-weight: 600;
       text-decoration: none;
-      cursor: pointer;
-      border: none;
-      font-size: 1rem;
-      transition: background 0.2s;
-    }
-    .btn-primary { background: var(--primary); color: #fff; }
-    .btn-primary:hover { background: var(--primary-dark); }
-    .btn-outline {
-      background: var(--surface);
-      color: var(--text);
-      border: 1px solid var(--border);
-      margin-left: 0.75rem;
-    }
-
-    /* Métricas */
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      max-width: 1100px;
-      margin: 0 auto 4rem;
-      padding: 0 1.5rem;
-    }
-    .stat-card {
-      background: var(--surface);
-      padding: 1.5rem;
-      border-radius: 12px;
-      border: 1px solid var(--border);
       text-align: center;
     }
-    .stat-card strong { display: block; font-size: 1.8rem; color: var(--primary); }
-    .stat-card span { color: var(--text-muted); font-size: 0.9rem; }
 
-    /* Seções Gerais */
-    section { max-width: 1100px; margin: 0 auto; padding: 4rem 1.5rem; }
-    .section-title { text-align: center; margin-bottom: 3rem; }
-    .section-title h2 { font-size: 2rem; margin-bottom: 0.5rem; }
-    .section-title p { color: var(--text-muted); }
+    .btn:hover { background: var(--primary-dark); }
 
-    /* Planos */
-    .grid-3 {
+    .btn-outline {
+      background: white;
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover { background: #f1f5f9; }
+
+    .stats, .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
       gap: 1.5rem;
     }
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
+
+    .stats {
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 1.5rem;
+    }
+
+    .stat-card, .card {
+      background: white;
       padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .stat-card { text-align: center; }
+
+    .stat-card strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+
+    .stat-card span, .card li, .muted {
+      color: var(--muted);
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .section-title h2 {
+      font-size: 2rem;
+      margin-bottom: .5rem;
+    }
+
+    .section-title p { color: var(--muted); }
+
+    .card {
       display: flex;
       flex-direction: column;
     }
-    .card.featured { border: 2px solid var(--primary); position: relative; }
-    .tag {
-      position: absolute;
-      top: -12px;
-      right: 20px;
-      background: var(--primary);
-      color: #fff;
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-    }
-    .price { font-size: 2rem; font-weight: 800; margin: 1rem 0; color: var(--text); }
-    .price small { font-size: 0.9rem; font-weight: 400; color: var(--text-muted); }
-    .card ul { list-style: none; margin: 1rem 0 2rem; flex-grow: 1; }
-    .card li { margin-bottom: 0.6rem; color: var(--text-muted); font-size: 0.95rem; }
-    .card li::before { content: "✓ "; color: var(--primary); font-weight: bold; }
 
-    /* FAQ (Apenas HTML + CSS usando <details>) */
-    .faq-list { max-width: 750px; margin: 0 auto; }
+    .card.featured { border: 2px solid var(--primary); }
+    .card h3 { margin-top: 0; }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .price small {
+      font-size: .9rem;
+      font-weight: 400;
+      color: var(--muted);
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+      margin-bottom: 2rem;
+      flex: 1;
+    }
+
+    .card li { margin-bottom: .6rem; }
+
+    .faq-list {
+      max-width: 750px;
+      margin: auto;
+    }
+
     details {
-      background: var(--surface);
+      background: white;
       border: 1px solid var(--border);
       border-radius: 8px;
-      margin-bottom: 0.75rem;
+      margin-bottom: .75rem;
       padding: 1rem 1.25rem;
     }
-    summary { font-weight: 600; cursor: pointer; list-style: none; }
-    details p { margin-top: 0.75rem; color: var(--text-muted); font-size: 0.95rem; }
 
-    /* Rodapé */
+    summary { font-weight: 600; cursor: pointer; }
+    details p { color: var(--muted); }
+
     footer {
       text-align: center;
-      padding: 3rem 1.5rem;
+      padding: 3rem 1.5rem 6rem;
       border-top: 1px solid var(--border);
-      color: var(--text-muted);
-      font-size: 0.9rem;
+      color: var(--muted);
+      font-size: .9rem;
     }
 
-    /* Widget de Chat Flutuante */
     .chat-launcher {
       position: fixed;
       bottom: 24px;
       right: 24px;
-      background: var(--primary);
-      color: white;
       width: 60px;
       height: 60px;
-      border-radius: 50%;
       border: none;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
-      cursor: pointer;
+      border-radius: 50%;
+      background: var(--primary);
+      color: white;
       font-size: 1.5rem;
+      box-shadow: 0 4px 14px #0003;
       z-index: 1000;
     }
+
     .chat-window {
       position: fixed;
       bottom: 96px;
@@ -203,16 +262,19 @@
       width: 350px;
       max-width: calc(100vw - 48px);
       height: 460px;
-      background: var(--surface);
+      max-height: calc(100dvh - 112px);
+      background: white;
       border: 1px solid var(--border);
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-      display: none;
+      box-shadow: 0 10px 25px #0003;
+      display: flex;
       flex-direction: column;
       overflow: hidden;
       z-index: 1000;
     }
-    .chat-window.open { display: flex; }
+
+    .chat-window[hidden] { display: none; }
+
     .chat-header {
       background: var(--primary);
       color: white;
@@ -221,73 +283,102 @@
       justify-content: space-between;
       align-items: center;
     }
-    .chat-header small { display: block; font-size: 0.75rem; opacity: 0.85; }
-    .chat-close { background: none; border: none; color: white; font-size: 1.4rem; cursor: pointer; }
+
+    .chat-header small { display: block; }
+
+    .chat-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+    }
+
     .chat-messages {
       flex: 1;
+      min-height: 0;
       padding: 1rem;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      gap: .75rem;
       background: #f1f5f9;
     }
+
     .msg {
-      max-width: 82%;
-      padding: 0.65rem 0.9rem;
+      max-width: 85%;
+      margin: 0;
+      padding: .65rem .9rem;
       border-radius: 12px;
-      font-size: 0.9rem;
-      word-wrap: break-word;
+      font-size: .9rem;
+      overflow-wrap: anywhere;
+      white-space: pre-wrap;
     }
-    .msg.bot { background: white; align-self: flex-start; border: 1px solid var(--border); }
-    .msg.user { background: var(--primary); color: white; align-self: flex-end; }
+
+    .msg.bot {
+      background: white;
+      align-self: flex-start;
+      border: 1px solid var(--border);
+    }
+
+    .msg.user {
+      background: var(--primary);
+      color: white;
+      align-self: flex-end;
+    }
+
     .quick-replies {
       display: flex;
-      gap: 0.4rem;
-      padding: 0.5rem 0.75rem;
+      gap: .4rem;
+      padding: .5rem .75rem;
       overflow-x: auto;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
+      flex-shrink: 0;
     }
+
     .quick-replies button {
       white-space: nowrap;
-      font-size: 0.75rem;
-      padding: 0.35rem 0.65rem;
+      font-size: .8rem;
+      padding: .35rem .65rem;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--bg);
-      cursor: pointer;
     }
+
     .chat-form {
       display: flex;
+      gap: .5rem;
       border-top: 1px solid var(--border);
-      padding: 0.5rem;
-      background: var(--surface);
+      padding: .5rem;
     }
+
     .chat-form input {
       flex: 1;
-      border: none;
-      padding: 0.5rem;
-      outline: none;
-      font-size: 0.9rem;
+      min-width: 0;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: .5rem;
     }
-    .chat-form button {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
+
+    .chat-form .btn { padding: .5rem .8rem; }
+    button:disabled { opacity: .6; cursor: wait; }
+
+    @media (max-width: 600px) {
+      .nav-container { justify-content: center; }
+      .hero { padding-block: 3rem; }
+      section { padding: 3rem 1rem; }
+      .actions .btn { width: 100%; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
     }
   </style>
 </head>
-<body>
 
+<body>
   <header>
     <div class="nav-container">
-      <a href="#" class="logo">Aura<span>Energia</span></a>
-      <nav>
+      <a href="#inicio" class="logo">Aura<span>Energia</span></a>
+      <nav aria-label="Navegação principal">
         <a href="#planos">Planos</a>
         <a href="#como-funciona">Como funciona</a>
         <a href="#faq">Dúvidas</a>
@@ -296,86 +387,226 @@
   </header>
 
   <main>
-    <section class="hero">
-      <span class="badge">100% Renovável · Sem obras no telhado</span>
-      <h1>Reduza sua conta de luz em até 20% todos os meses.</h1>
-      <p>Assine créditos de energia solar gerados em nossas fazendas solares e receba o desconto direto na sua fatura atual, com suporte inteligente 24h.</p>
-      <a href="#planos" class="btn btn-primary">Ver planos</a>
-      <button class="btn btn-outline" onclick="toggleChat()">Tirar dúvida no chat</button>
+    <section class="hero" id="inicio">
+      <span class="badge">Energia solar · Sem obras no telhado</span>
+      <h1>Economize na sua conta de luz com energia solar por assinatura.</h1>
+      <p>Conheça nossos planos de créditos de energia solar e consulte a disponibilidade para sua região.</p>
+      <div class="actions">
+        <a href="#planos" class="btn">Ver planos</a>
+        <button type="button" class="btn btn-outline" onclick="openChat(this)">
+          Tirar dúvida no chat
+        </button>
+      </div>
     </section>
 
     <div class="stats">
-      <div class="stat-card"><strong>Até 20%</strong><span>Economia garantida</span></div>
-      <div class="stat-card"><strong>R$ 0,00</strong><span>Custo de instalação</span></div>
-      <div class="stat-card"><strong>24/7</strong><span>Atendimento com IA</span></div>
-      <div class="stat-card"><strong>45 mil</strong><span>Lares conectados</span></div>
+      <div class="stat-card">
+        <strong>Sem obras</strong>
+        <span>Sem painéis no seu telhado</span>
+      </div>
+      <div class="stat-card">
+        <strong>Digital</strong>
+        <span>Consulte planos pelo atendimento</span>
+      </div>
     </div>
 
     <section id="planos">
       <div class="section-title">
         <h2>Escolha seu plano</h2>
-        <p>Sem fidelidade, sem taxa de adesão e 100% digital.</p>
+        <p>Consulte disponibilidade e condições de contratação.</p>
       </div>
-      <div class="grid-3">
-        <div class="card">
+
+      <div class="grid">
+        <article class="card">
           <h3>Aura Essencial</h3>
-          <div class="price">12% OFF <small>na fatura</small></div>
+          <div class="price">12% OFF <small>conforme condições</small></div>
           <ul>
             <li>Contas a partir de R$ 150/mês</li>
-            <li>Sem fidelidade contratual</li>
-            <li>Ativação em até 30 dias</li>
+            <li>Consulte as condições de cancelamento</li>
+            <li>Confirme o prazo de ativação</li>
           </ul>
-          <button class="btn btn-primary" onclick="selectPlan('Aura Essencial')">Quero esse</button>
-        </div>
+          <button type="button" class="btn" onclick="selectPlan('Aura Essencial', this)">
+            Quero esse
+          </button>
+        </article>
 
-        <div class="card featured">
-          <span class="tag">Mais escolhido</span>
+        <article class="card featured">
           <h3>Aura Plus</h3>
-          <div class="price">16% OFF <small>na fatura</small></div>
+          <div class="price">16% OFF <small>conforme condições</small></div>
           <ul>
             <li>Contas acima de R$ 350/mês</li>
             <li>Relatório mensal de carbono evitado</li>
             <li>Suporte prioritário</li>
           </ul>
-        </div>
+          <button type="button" class="btn" onclick="selectPlan('Aura Plus', this)">
+            Quero esse
+          </button>
+        </article>
+      </div>
+
+      <p class="muted">
+        Confirme na proposta os benefícios, a elegibilidade e os componentes
+        da fatura aos quais o desconto se aplica.
+      </p>
+    </section>
+
+    <section id="como-funciona">
+      <div class="section-title">
+        <h2>Como funciona</h2>
+      </div>
+
+      <div class="grid">
+        <article class="card">
+          <h3>1. Consulte a disponibilidade</h3>
+          <p class="muted">Verifique se sua cidade e distribuidora são atendidas.</p>
+        </article>
+        <article class="card">
+          <h3>2. Escolha seu plano</h3>
+          <p class="muted">Confira a proposta, os descontos e as condições do contrato.</p>
+        </article>
+        <article class="card">
+          <h3>3. Acompanhe a economia</h3>
+          <p class="muted">Após a ativação, acompanhe os créditos conforme as condições contratadas.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="section-title">
+        <h2>Dúvidas frequentes</h2>
+      </div>
+
+      <div class="faq-list">
+        <details>
+          <summary>Preciso instalar painéis solares?</summary>
+          <p>Não. A energia é gerada em fazendas solares, sem instalação de painéis no seu imóvel.</p>
+        </details>
+        <details>
+          <summary>Está disponível na minha região?</summary>
+          <p>A disponibilidade depende da cidade e da distribuidora. Consulte o atendimento.</p>
+        </details>
+        <details>
+          <summary>O desconto vale sobre toda a fatura?</summary>
+          <p>Confira na proposta quais componentes da fatura recebem o desconto.</p>
+        </details>
+        <details>
+          <summary>Qual é o prazo de ativação?</summary>
+          <p>O prazo será informado na proposta, conforme sua distribuidora e as condições de contratação.</p>
+        </details>
       </div>
     </section>
   </main>
-  <script>
-    // 1. REPLACE THIS WITH YOUR ACTUAL WEBHOOK URL
-    const WEBHOOK_URL = "https://teresaai27ai-star.github.io/n8nproject/postdata";
 
-    // Generates a unique session ID so your backend remembers the conversation
-    const sessionId = localStorage.getItem("chat_session") || crypto.randomUUID();
-    localStorage.setItem("chat_session", sessionId);
+  <footer>
+    <p>Aura Energia · Energia solar por assinatura</p>
+    <p>Evite enviar documentos ou dados sensíveis pelo chat.</p>
+  </footer>
+
+  <button
+    type="button"
+    class="chat-launcher"
+    id="chatLauncher"
+    onclick="toggleChat()"
+    aria-label="Abrir ou fechar chat"
+    aria-controls="chatWindow"
+    aria-expanded="false"
+  >💬</button>
+
+  <div
+    class="chat-window"
+    id="chatWindow"
+    role="region"
+    aria-labelledby="chatTitle"
+    hidden
+  >
+    <div class="chat-header">
+      <div>
+        <strong id="chatTitle">Atendimento Aura</strong>
+        <small>Planos e disponibilidade</small>
+      </div>
+      <button type="button" class="chat-close" onclick="closeChat()" aria-label="Fechar chat">×</button>
+    </div>
+
+    <div
+      class="chat-messages"
+      id="chatMessages"
+      role="log"
+      aria-live="polite"
+      aria-relevant="additions text"
+      aria-label="Mensagens da conversa"
+    ></div>
+
+    <div class="quick-replies">
+      <button type="button" onclick="sendMessage('Como funciona?')">Como funciona?</button>
+      <button type="button" onclick="sendMessage('Quais são os planos?')">Planos</button>
+    </div>
+
+    <form class="chat-form" id="chatForm">
+      <input
+        id="chatInput"
+        aria-label="Sua mensagem"
+        placeholder="Digite sua dúvida..."
+        maxlength="2000"
+        autocomplete="off"
+        required
+      >
+      <button type="submit" class="btn" id="sendButton">Enviar</button>
+    </form>
+  </div>
+
+  <script>
+    // Paste your actual n8n Production Webhook URL here.
+    // It must accept POST, allow your site's origin through CORS,
+    // and return JSON: { "reply": "..." } or { "output": "..." }.
+    const WEBHOOK_URL = "";
 
     const chatWindow = document.getElementById("chatWindow");
     const chatMessages = document.getElementById("chatMessages");
     const chatInput = document.getElementById("chatInput");
+    const chatLauncher = document.getElementById("chatLauncher");
+    const sendButton = document.getElementById("sendButton");
+
+    let busy = false;
+    let previousFocus = chatLauncher;
+    let sessionId = globalThis.crypto?.randomUUID?.()
+      || Date.now() + "-" + Math.random().toString(36).slice(2);
+
+    try {
+      sessionId = localStorage.getItem("chat_session") || sessionId;
+      localStorage.setItem("chat_session", sessionId);
+    } catch {
+      // Continue if browser storage is unavailable.
+    }
+
+    function openChat(trigger) {
+      if (chatWindow.hidden) {
+        previousFocus = trigger || document.activeElement;
+      }
+      chatWindow.hidden = false;
+      chatLauncher.setAttribute("aria-expanded", "true");
+      chatInput.focus();
+    }
+
+    function closeChat() {
+      chatWindow.hidden = true;
+      chatLauncher.setAttribute("aria-expanded", "false");
+      previousFocus?.focus();
+    }
 
     function toggleChat() {
-      chatWindow.classList.toggle("open");
+      if (chatWindow.hidden) openChat(chatLauncher);
+      else closeChat();
     }
 
-    function selectPlan(planName) {
-      if (!chatWindow.classList.contains("open")) toggleChat();
-      sendMessage(`Tenho interesse no plano ${planName}. Como faço para contratar?`);
-    }
-
-    function sendQuick(text) {
-      sendMessage(text);
-    }
-
-    function handleSend(e) {
-      e.preventDefault();
-      const text = chatInput.value.trim();
-      if (!text) return;
-      chatInput.value = "";
-      sendMessage(text);
+    function selectPlan(planName, trigger) {
+      openChat(trigger);
+      const text = `Tenho interesse no plano ${planName}. Como faço para contratar?`;
+      if (busy) chatInput.value = text;
+      else sendMessage(text);
     }
 
     function appendMessage(text, sender) {
-      const div = document.createElement("div");
+      const div = document.createElement("p");
       div.className = `msg ${sender}`;
       div.textContent = text;
       chatMessages.appendChild(div);
@@ -384,29 +615,84 @@
     }
 
     async function sendMessage(text) {
+      text = text.trim();
+      if (!text || busy) return;
+
       appendMessage(text, "user");
+
+      if (!WEBHOOK_URL.trim()) {
+        appendMessage(
+          "O chat ainda não está conectado ao atendimento. Consulte os planos e as dúvidas nesta página.",
+          "bot"
+        );
+        return;
+      }
+
+      busy = true;
+      sendButton.disabled = true;
+      document.querySelectorAll(".quick-replies button").forEach(button => {
+        button.disabled = true;
+      });
+
       const loadingMsg = appendMessage("Digitando...", "bot");
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 30000);
 
       try {
         const response = await fetch(WEBHOOK_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            sessionId: sessionId,
+            sessionId,
             message: text,
             source: "github-pages"
-          })
+          }),
+          signal: controller.signal
         });
 
         if (!response.ok) throw new Error("Server response error");
 
         const data = await response.json();
-        // Reads the reply from either { "reply": "..." } or { "output": "..." }
-        loadingMsg.textContent = data.reply || data.output || "Recebi sua mensagem!";
+        const reply = data.reply || data.output;
+
+        if (typeof reply !== "string" || !reply.trim()) {
+          throw new Error("Invalid response");
+        }
+
+        loadingMsg.textContent = reply;
       } catch (err) {
-        loadingMsg.textContent = "Não foi possível conectar ao webhook agora. Verifique a URL configurada no código.";
+        loadingMsg.textContent = err.name === "AbortError"
+          ? "O atendimento demorou para responder. Tente novamente."
+          : "Não foi possível conectar ao atendimento agora. Tente novamente mais tarde.";
+      } finally {
+        clearTimeout(timeout);
+        busy = false;
+        sendButton.disabled = false;
+        document.querySelectorAll(".quick-replies button").forEach(button => {
+          button.disabled = false;
+        });
+        chatMessages.scrollTop = chatMessages.scrollHeight;
       }
     }
+
+    document.getElementById("chatForm").addEventListener("submit", event => {
+      event.preventDefault();
+      const text = chatInput.value.trim();
+      if (!text || busy) return;
+      chatInput.value = "";
+      sendMessage(text);
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && !chatWindow.hidden) closeChat();
+    });
+
+    appendMessage(
+      WEBHOOK_URL.trim()
+        ? "Olá! Como posso ajudar? Evite enviar dados sensíveis."
+        : "Olá! O atendimento online ainda está em configuração.",
+      "bot"
+    );
   </script>
 </body>
 </html>
